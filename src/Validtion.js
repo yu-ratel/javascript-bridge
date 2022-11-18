@@ -9,8 +9,11 @@ class BridgeValidtion {
     }
   }
   static validateSelect(select) {
-    if(select.length !== 1) {
+    if(select.length !== 1 ) {
       throw new Error('[ERROR] 한자리의 U와 D를 입력하셔야 합니다.')
+    }
+    if(select !== 'U' && select !== 'D') {
+      throw new Error('[ERROR] U와 D로만 입력하셔야 합니다.')
     }
   }
 }
