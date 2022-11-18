@@ -18,5 +18,19 @@ describe("에러 테스트", () => {
       expect(() => BridgeValidtion.validateBridge(bridge)).toThrow('[ERROR]');
     });
   });
-});
 
+  test('건너갈 다리의 입력값이 한자리가 아닐 경우 오류를 던지는지 ', () => {
+    const userInput = ['As', ''];
+
+    userInput.forEach((input) => {
+      expect(() => BridgeValidtion.validateSelect(input)).toThrow('[ERROR]');
+    });
+  });
+  test('건너갈 다리의 입력값이 U 와 D 가 아닐경우 오류를 던지는지 ', () => {
+    const userInput = ['X', ' ', '.', '0'];
+
+    userInput.forEach((input) => {
+      expect(() => BridgeValidtion.validateSelect(input)).toThrow('[ERROR]');
+    })
+  })
+});
