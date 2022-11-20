@@ -1,19 +1,19 @@
 const BridgeMaker = require('../BridgeMaker');
 const BridgeRandomNumberGenerator = require('../BridgeRandomNumberGenerator');
 const BridgeValidtion = require('../Validtion');
+const User = require('../User');
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 class BridgeGame {
   #bridge
-  #count
+  #totolCount
   
   constructor() {
-    this.userStatus = [[],[]];
+    this.user = new User();
     this.#bridge 
-    this.#count = 0;
-    this.ch = true;
-    this.totolCount = 1;
+    this.progress = true;
+    this.#totolCount = 1;
   }
 
   bridgeLengthInput(size) {
@@ -21,52 +21,12 @@ class BridgeGame {
   }
 
   move(input) {
-    if(this.whetherHasCan(input, this.#bridge, this.#count)) {
-      return this.hit(input, this.userStatus);
+    if(this.user.whetherHasCan(input, this.#bridge)) {
+      return this.user.willGo();
     }
-    if(!this.whetherHasCan(input, this.#bridge, this.#count)) {
-      return this.miss(input, this.userStatus);
+    if(this.user.whetherHasCan(input, this.#bridge)) {
+      return this.user.willNotGo(this.progress);
     }
-  }
-
-  whetherHasCan(input, bridge, count) {
-    if(input !== bridge[count]) {
-      return false;
-    }
-    if(input === bridge[count]) {
-      return true;
-    }
-  }
-
-  hit(input, status) {
-    if(input === 'U') {
-      status[bridgeForm.UP].push(bridgeForm.hit);
-      status[bridgeForm.DOWN].push(bridgeForm.block);
-    }
-    if(input === 'D') {
-      status[bridgeForm.UP].push(bridgeForm.block);
-      status[bridgeForm.DOWN].push(bridgeForm.hit);
-    }
-    this.#count += 1;
-  }
-
-  miss(input, status) {
-    if(input === 'U') {
-      status[bridgeForm.UP].push(bridgeForm.miss);
-      status[bridgeForm.DOWN].push(bridgeForm.block);
-    }
-    if(input === 'D') {
-      status[bridgeForm.UP].push(bridgeForm.block);
-      status[bridgeForm.DOWN].push(bridgeForm.miss);
-    }
-    this.ch = false;
-  }
-
-  answer() {
-    if(this.#count === this.#bridge.length) {
-      return true;
-    }
-    return false;
   }
 
   retry() {
@@ -74,8 +34,15 @@ class BridgeGame {
       this.userStatus[0].pop()
       this.userStatus[1].pop()
       this.ch = true;
-      this.totolCount += 1 ;
+      this.#totolCount += 1 ;
     }
+  }
+
+  answer() {
+    if(this.#count === this.#bridge.length) {
+      return true;
+    }
+    return false;
   }
 }
 
