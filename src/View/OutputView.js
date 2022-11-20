@@ -36,12 +36,7 @@ const OutputView = {
   },
 
   chking() {
-    if(!game.answer()) {
-    game.userStatus[0].pop()
-    game.userStatus[1].pop()
-    game.ch = true;
-    game.totolCount += 1 ;
-    }
+    return game.retry();
   },
 
   real() {

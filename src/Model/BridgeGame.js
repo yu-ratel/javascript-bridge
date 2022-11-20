@@ -68,6 +68,15 @@ class BridgeGame {
     }
     return false;
   }
+
+  retry() {
+    if(this.answer()) {
+      this.userStatus[0].pop()
+      this.userStatus[1].pop()
+      this.ch = true;
+      this.totolCount += 1 ;
+    }
+  }
 }
 
 module.exports = BridgeGame;
