@@ -1,11 +1,11 @@
 const { Console } = require("@woowacourse/mission-utils");
 const BridgeValidtion = require('../src/Validtion');
-const BridgeGame = require('../src/Model/BridgeGame');
+const User = require('../src/User');
 
 afterAll(() => Console.close());
 
 describe("에러 테스트", () => {
-  const game = new BridgeGame();
+  const user = new User();
 
   test('3~20의 다리길이가 입력되지 않았을 때 오류를 던지는지 ', () => {
     const bridgeLength = [0, 2, 21];
@@ -41,21 +41,21 @@ describe("에러 테스트", () => {
     const input = ['U', 'D'];
     const bridge = ['U', 'U'];
 
-    expect(game.whetherHasCan(input[0],bridge,0)).toBeTruthy();
-    expect(game.whetherHasCan(input[1],bridge,1)).toBeFalsy();
+    expect(user.whetherHasCan(input[0],bridge)).toBeTruthy();
+    expect(user.whetherHasCan(input[1],bridge)).toBeFalsy();
   })
 
   test('건널 수 있는 다리 일 때 O와 선택하지않은 다리는 공백을 넣어주는지', () => {
     const input = 'U'
     const status = [[],[]];
-    game.hit(input, status);
+    user.canGo(input, status);
 
     expect(status).toEqual([[' O '], ['   ']]);
   })
   test('건널 수 없는 다리 일 때 X와 선택하지않은 다리는 공백을 넣어주는지', () => {
     const input = 'U'
     const status = [[],[]];
-    game.miss(input, status);
+    user.canNotGo(input, status);
 
     expect(status).toEqual([[' X '], ['   ']]);
   })
