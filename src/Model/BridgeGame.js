@@ -1,7 +1,6 @@
 const BridgeMaker = require('../BridgeMaker');
 const BridgeRandomNumberGenerator = require('../BridgeRandomNumberGenerator');
 const BridgeValidtion = require('../Validtion');
-const { Console } = require('@woowacourse/mission-utils');
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
@@ -13,10 +12,11 @@ class BridgeGame {
     this.userStatus = [[],[]];
     this.#bridge 
     this.#count = 0;
+    this.ch = true;
+    this.totolCount = 1;
   }
 
   bridgeLengthInput(size) {
-    BridgeValidtion.validateBridge(size);
     this.#bridge = BridgeMaker.makeBridge(size, BridgeRandomNumberGenerator.generate);
   }
 
@@ -47,7 +47,7 @@ class BridgeGame {
       status[bridgeForm.UP].push(bridgeForm.block);
       status[bridgeForm.DOWN].push(bridgeForm.hit);
     }
-    return this.#count += 1;
+    this.#count += 1;
   }
 
   miss(input, status) {
@@ -59,10 +59,15 @@ class BridgeGame {
       status[bridgeForm.UP].push(bridgeForm.block);
       status[bridgeForm.DOWN].push(bridgeForm.miss);
     }
-    return this.#count -= 1;
+    this.ch = false;
   }
 
-  retry() {}
+  answer() {
+    if(this.#count === this.#bridge.length) {
+      return true;
+    }
+    return false;
+  }
 }
 
 module.exports = BridgeGame;
