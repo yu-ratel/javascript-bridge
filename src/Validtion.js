@@ -19,7 +19,7 @@ class BridgeValidtion {
 
   static validateResult(select) {
     if(select !== 'R' && select !== 'Q') {
-      trow ('[ERROR] 재시작(R) 과 종료(Q) 로만 입력하셔야 합니다.')
+      throw ('[ERROR] 재시작(R) 과 종료(Q) 로만 입력하셔야 합니다.')
     }
   }
 }
