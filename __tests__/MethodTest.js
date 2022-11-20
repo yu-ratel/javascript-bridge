@@ -59,4 +59,12 @@ describe("에러 테스트", () => {
 
     expect(status).toEqual([[' X '], ['   ']]);
   })
+
+  test('실패시 재시작(R) 과 종료(Q) 외에 다른것을 입력한다면 오류를 던지는지', () => {
+    const selectList = ['a,', ' ', 'RR' ];
+
+    selectList.forEach((select) => {
+      expect(() => BridgeValidtion.validateResult(select)).toThrow('[ERROR]');
+    })
+  })
 });
