@@ -26,8 +26,9 @@ const InputView = {
       if(api.gameState()) {
         return this.readMoving();
       }
-      
+      if(!api.gamechlear()) {
       this.readGameCommand();
+      }
     })
   },
 
@@ -37,9 +38,10 @@ const InputView = {
   readGameCommand() {
     Console.readLine('\n게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)\n', (select) => {
       if(api.gameRetry(select)) {
-        this.readMoving();
+        return this.readMoving();
       };
-      Console.close();
+
+      api.gameResult();
     });
   },
 

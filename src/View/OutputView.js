@@ -10,14 +10,14 @@ const OutputView = {
     Console.print(`[${userStatus[0].join('|')}]`);
     Console.print(`[${userStatus[1].join('|')}]`);
   },
-  
-   printResult() {
-    Console.print(`${this.totalGameText()}`)
-    Console.print(`[${game.userStatus[0].join('|')}]`);
-    Console.print(`[${game.userStatus[1].join('|')}]\n`);
-    Console.print(`게임 성공 여부: ${this.answerText()}`);
-    Console.print(`총 시도한 횟수: ${game.totolCount}`);
-    Console.close();
+
+   printResult(user, option) {
+    Console.print(`최종 게임 결과`)
+    Console.print(`[${user[0].join('|')}]`);
+    Console.print(`[${user[1].join('|')}]\n`);
+    Console.print(`게임 성공 여부: ${option[0]}`);
+    Console.print(`총 시도한 횟수: ${option[1]}`);
+    return Console.close()
    },
 };
 

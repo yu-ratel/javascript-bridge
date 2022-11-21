@@ -21,13 +21,23 @@ class BridgeApi {
     this.#Game.retry();
     return OutputView.printMap(this.#Game.move(select));
   }
-
   gameState() {
+    if(this.gamechlear()) {
+      return OutputView.printResult(this.#Game.user.userStatus, this.#Game.answerOption());
+    }
     return this.#Game.progress;
   }
 
   gameRetry(select) {
     return this.#Game.retry(select)
+  }
+
+  gamechlear() {
+    return this.#Game.answer();
+  }
+
+  gameResult() {
+    return OutputView.printResult(this.#Game.user.userStatus, this.#Game.answerOption());
   }
 
 }

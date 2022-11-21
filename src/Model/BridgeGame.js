@@ -5,13 +5,13 @@ const User = require('../User');
 
 class BridgeGame {
   #bridge
-  #totolCount
+  #totalCount
   
   constructor() {
     this.user = new User();
     this.#bridge; 
     this.progress = true;
-    this.#totolCount = 1;
+    this.#totalCount = 1;
   }
 
   brige(size) {
@@ -41,7 +41,7 @@ class BridgeGame {
 
   retryOption() {
     this.progress = false;
-    this.#totolCount += 1 ;
+    this.#totalCount += 1 ;
     return this.user.returnPosition();
   }
 
@@ -50,6 +50,13 @@ class BridgeGame {
       return true;
     }
     return false;
+  }
+  
+  answerOption() {
+    if(this.answer()) {
+      return ['성공', this.#totalCount];
+    }
+    return ['실패', this.#totalCount];
   }
 }
 
