@@ -21,11 +21,12 @@ class BridgeGame {
   }
 
   move(input) {
-    if(this.user.whetherHasCan(input, this.#bridge)) {
-      return this.user.willGo();
+    if(!this.user.whetherHasCan(input, this.#bridge)) {
+      return this.user.willGo(input);
     }
     if(this.user.whetherHasCan(input, this.#bridge)) {
-      return this.user.willNotGo(this.progress);
+      this.progress = false;
+      return this.user.willNotGo(input);
     }
   }
 
@@ -39,7 +40,7 @@ class BridgeGame {
   }
 
   answer() {
-    if(this.#count === this.#bridge.length) {
+    if(this.user.userCount === this.#bridge.length) {
       return true;
     }
     return false;
@@ -47,12 +48,3 @@ class BridgeGame {
 }
 
 module.exports = BridgeGame;
-
-
-const bridgeForm = {
-  hit: ' O ',
-  miss: ' X ',
-  block: '   ',
-  UP: 0,
-  DOWN: 1,
-}

@@ -7,44 +7,43 @@ class User {
 
   whetherHasCan(input, bridge) {
     if(input === bridge[this.userCount]) {
-      this.canGo(input, this.userStatus);
       return true;
     }
     if(input !== bridge[this.userCount]) {
-      this.canNotGo(input, this.userStatus);
       return false;
     }
   }
 
-  canGo(input, status) {
+  canGo(input) {
     if(input === 'U') {
-      status[bridgeForm.UP].push(bridgeForm.hit);
-      status[bridgeForm.DOWN].push(bridgeForm.block);
+      this.userStatus[bridgeForm.UP].push(bridgeForm.hit);
+      this.userStatus[bridgeForm.DOWN].push(bridgeForm.block);
     }
       if(input === 'D') {
-      status[bridgeForm.UP].push(bridgeForm.block);
-      status[bridgeForm.DOWN].push(bridgeForm.hit);
+      this.userStatus[bridgeForm.UP].push(bridgeForm.block);
+      this.userStatus[bridgeForm.DOWN].push(bridgeForm.hit);
     }
   }
 
-  willGo() {
+  willGo(input) {
     this.userCount+= 1;
+    this.canGo(input);
     return this.userStatus;
   }
 
-  canNotGo(input, status) {
+  canNotGo(input) {
     if(input === 'U') {
-      status[bridgeForm.UP].push(bridgeForm.miss);
-      status[bridgeForm.DOWN].push(bridgeForm.block);
+      this.userStatus[bridgeForm.UP].push(bridgeForm.miss);
+      this.userStatus[bridgeForm.DOWN].push(bridgeForm.block);
     }
     if(input === 'D') {
-      status[bridgeForm.UP].push(bridgeForm.block);
-      status[bridgeForm.DOWN].push(bridgeForm.miss);
+      this.userStatus[bridgeForm.UP].push(bridgeForm.block);
+      this.userStatus[bridgeForm.DOWN].push(bridgeForm.miss);
     }
   }
 
-  willNotGo(progress) {
-    progress = false;
+  willNotGo(input) {
+    this.canNotGo(input);
     return this.userStatus;
   }
 }
