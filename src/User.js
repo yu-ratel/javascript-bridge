@@ -46,6 +46,14 @@ class User {
     this.canNotGo(input);
     return this.userStatus;
   }
+
+  returnPosition() {
+    this.userStatus.map((status) => {
+      status.pop();
+    })
+    
+    return this.userStatus;
+  }
 }
 
 

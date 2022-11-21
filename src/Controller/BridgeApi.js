@@ -12,9 +12,24 @@ class BridgeApi {
   bridgeSize(size) {
     return this.#Game.brige(size);
   }
+
   nowMapState(select) {
     return OutputView.printMap(this.#Game.move(select));
   }
+
+  missMapState(select) {
+    this.#Game.retry();
+    return OutputView.printMap(this.#Game.move(select));
+  }
+
+  gameState() {
+    return this.#Game.progress;
+  }
+
+  gameRetry() {
+    return this.#Game.answer();
+  }
+
 }
 
 module.exports = BridgeApi;
