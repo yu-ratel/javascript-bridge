@@ -45,19 +45,16 @@ describe("에러 테스트", () => {
     expect(user.whetherHasCan(input[1],bridge)).toBeFalsy();
   })
 
+  // 중첩됨으로 묵함수써서 내일 리팩토링하기.
   test('건널 수 있는 다리 일 때 O와 선택하지않은 다리는 공백을 넣어주는지', () => {
     const input = 'U'
-    const status = [[],[]];
-    user.canGo(input, status);
 
-    expect(status).toEqual([[' O '], ['   ']]);
+    expect(user.willGo(input)).toEqual([[' O '], ['   ']]);
   })
   test('건널 수 없는 다리 일 때 X와 선택하지않은 다리는 공백을 넣어주는지', () => {
     const input = 'U'
-    const status = [[],[]];
-    user.canNotGo(input, status);
 
-    expect(status).toEqual([[' X '], ['   ']]);
+    expect(user.willNotGo(input)).toEqual([[' O ',' X '], ['   ', '   ']]);
   })
 
   test('실패시 재시작(R) 과 종료(Q) 외에 다른것을 입력한다면 오류를 던지는지', () => {

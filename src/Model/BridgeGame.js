@@ -19,10 +19,10 @@ class BridgeGame {
   }
 
   move(input) {
-    if(!this.user.whetherHasCan(input, this.#bridge)) {
+    if(this.user.whetherHasCan(input, this.#bridge)) {
       return this.user.willGo(input);
     }
-    if(this.user.whetherHasCan(input, this.#bridge)) {
+    if(!this.user.whetherHasCan(input, this.#bridge)) {
       this.progress = false;
       return this.user.willNotGo(input);
     }
@@ -61,3 +61,4 @@ class BridgeGame {
 }
 
 module.exports = BridgeGame;
+
