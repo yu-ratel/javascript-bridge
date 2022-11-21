@@ -17,10 +17,6 @@ class BridgeApi {
     return OutputView.printMap(this.#Game.move(select));
   }
 
-  missMapState(select) {
-    this.#Game.retry();
-    return OutputView.printMap(this.#Game.move(select));
-  }
   gameState() {
     if(this.gamechlear()) {
       return OutputView.printResult(this.#Game.user.userStatus, this.#Game.answerOption());

@@ -2,13 +2,12 @@ const { Console } = require("@woowacourse/mission-utils");
 const OutputView = {
 
   start() {
-    Console.print('다리 건너기 게임을 시작합니다.') ;
+    Console.print('다리 건너기 게임을 시작합니다.\n') ;
   },
   
   printMap(select) {
     let userStatus = select;
-    Console.print(`[${userStatus[0].join('|')}]`);
-    Console.print(`[${userStatus[1].join('|')}]`);
+    Console.print(`[${userStatus[0].join('|')}]\n[${userStatus[1].join('|')}]`);
   },
 
    printResult(user, option) {

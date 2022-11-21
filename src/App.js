@@ -1,5 +1,13 @@
+const OutputView = require('./View/OutputView');
+const InputView = require('./View/InputView');
 class App {
-  play() {}
+  play() {
+    OutputView.start();
+    InputView.bridgeSizeControl();
+  }
 }
 
 module.exports = App;
+let a = new App();
+a.play()
+
