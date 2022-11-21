@@ -26,8 +26,8 @@ class BridgeApi {
     return this.#Game.progress;
   }
 
-  gameRetry() {
-    return this.#Game.answer();
+  gameRetry(select) {
+    return this.#Game.retry(select)
   }
 
 }

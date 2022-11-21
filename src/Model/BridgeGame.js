@@ -1,3 +1,4 @@
+const { Console } = require("@woowacourse/mission-utils");
 const BridgeMaker = require('../BridgeMaker');
 const BridgeRandomNumberGenerator = require('../BridgeRandomNumberGenerator');
 const User = require('../User');
@@ -27,12 +28,21 @@ class BridgeGame {
     }
   }
 
-  retry() {
-    if(!this.answer()) {
-      this.progress = false;
-      this.#totolCount += 1 ;
-      return this.user.returnPosition();
+  retry(select) {
+    if(select === 'R') {
+      this.retryOption();
+      this.progress = true;
+      return true;
+    } 
+    if(select === 'Q') {
+      return false;
     }
+  }
+
+  retryOption() {
+    this.progress = false;
+    this.#totolCount += 1 ;
+    return this.user.returnPosition();
   }
 
   answer() {
