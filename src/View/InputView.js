@@ -1,8 +1,8 @@
 const { Console } = require("@woowacourse/mission-utils");
 const Validtion = require('../Validtion');
-const BridgeApi = require('../Controller/BridgeApi');
+const BridgeController = require('../Controller/BridgeController');
 
-const api = new BridgeApi();
+const controller = new BridgeController();
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -20,8 +20,8 @@ const InputView = {
     });
   },
   readBridgeSize(size) {
-      api.bridgeSize(size);
-      this.movingControl();
+    controller.bridgeSize(size);
+    this.movingControl();
   },
 
   movingControl() {
@@ -36,13 +36,13 @@ const InputView = {
     });
   },
   readMoving(select) {
-      api.nowMapState(select);
-      if(api.gameState()) {
-        return this.movingControl();
-      }
-      if(!api.gamechlear()) {
+    controller.nowMapState(select);
+    if(controller.gameState()) {
+      return this.movingControl();
+    }
+    if(!controller.gamechlear()) {
       this.GameCommandControl();
-      }
+    }
   },
 
   GameCommandControl() {
@@ -57,10 +57,10 @@ const InputView = {
     });
   },
   readGameCommand(select) {
-    if(api.gameRetry(select)) {
+    if(controller.gameRetry(select)) {
        return this.readMoving();
     };
-    api.gameResult();
+    controller.gameResult();
   },
 
 }
