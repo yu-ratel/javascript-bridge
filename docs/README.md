@@ -42,46 +42,39 @@
 - -[x] 종료 기능 (Q)   
     -  -[x] 게임성공여부 출력    
     -  -[x] 총시도 횟수 출력    
-- -[]🚨*공통예외사항*
-    - -[ ] 잘못된 값을 입력할 경우 [ERROR] 메세지 출력후 그 부분부터 다시 입력받는다.
+- 🚨*공통예외사항*
+    - -[x] 잘못된 값을 입력할 경우 [ERROR] 메세지 출력후 그 부분부터 다시 입력받는다.
 #
 
 ### 🎯 *프로그래밍 요구사항*
-- -[ ] 도메인 로직 단위 테스트를 구현한다.    
-    - -[ ] 핵심 로직, UI 을 구분한다.
-- -[ ] 함수 길이가 10라인을 넘어가지 않도록 한다.   
-- -[ ] 주어진 InputView, OutputView, BridgeGame, BridgeMaker 를 사용하여 구현한다.    
-- -[ ] InputView 에서만 MissionUtils의 Console.readLine() 을 이용해 사용자의 입력을 받을 수 있다.   
-- -[ ] BridgeGame 클래스에서 InputView, OutputView 를 사용하지 않는다.    
+- -[x] 도메인 로직 단위 테스트를 구현한다.    
+    - -[x] 핵심 로직, UI 을 구분한다.
+- -[x] 함수 길이가 10라인을 넘어가지 않도록 한다.   
+- -[x] 주어진 InputView, OutputView, BridgeGame, BridgeMaker 를 사용하여 구현한다.    
+- -[x] InputView 에서만 MissionUtils의 Console.readLine() 을 이용해 사용자의 입력을 받을 수 있다.   
+- -[x] BridgeGame 클래스에서 InputView, OutputView 를 사용하지 않는다.    
 
 #### 👀 InputView 객체 
--[ ] 파일경로 변경 O    
--[ ] 메서드의 인자 변경 O   
--[ ] 필요한 메서드 추가 O
+-[x] 파일경로 변경 O    
+-[x] 메서드의 인자 변경 O   
+-[x] 필요한 메서드 추가 O
 
 #### 👀 OutputView 객체 
--[ ] 파일경로 변경 O    
--[ ] 메서드의 이름변경 X, 인자는 변경 O     
--[ ] 값 출력을 위한 메서드 추가 O   
+-[x] 파일경로 변경 O    
+-[x] 메서드의 이름변경 X, 인자는 변경 O     
+-[x] 값 출력을 위한 메서드 추가 O   
 
 #### 👀 BridgeGame 클래스
--[ ] 필드 추가 O   
--[ ] 파일경로 변경 O   
--[ ] 메서드 이름 변경 X, 인자는 추가 및 변경 O
--[ ] 게임 진행을 위한 메서드 추가, 변경 O
+-[x] 필드 추가 O   
+-[x] 파일경로 변경 O   
+-[x] 메서드 이름 변경 X, 인자는 추가 및 변경 O
+-[x] 게임 진행을 위한 메서드 추가, 변경 O
 
 #### 👀 BridgeMaker 객체 
--[ ] 프로퍼티 추가 X 
--[ ] 파일경로 변경 X
--[ ] 메서드의 시그니처 반환타입 변경 X
+-[x] 프로퍼티 추가 X 
+-[x] 파일경로 변경 X
+-[x] 메서드의 시그니처 반환타입 변경 X
 
 #### 👀 BridgeRandomNumberGenerator 객체
--[ ] Random 값 추출을 위해 사용한다.   
+-[x] Random 값 추출을 위해 사용한다.   
 ex) const number = generateRandomNumber();
-
-내일 해야하는 것 
-상수화
-전체적인 리팩토링 
-try 유틸로 쓸 수 없을까 생각해보기 
-테스트케이스 묵함수 써서 고쳐보기 
-소감문 작성
