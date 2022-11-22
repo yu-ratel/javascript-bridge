@@ -8,6 +8,3 @@ class App {
 }
 
 module.exports = App;
-let a = new App();
-a.play()
-

@@ -10,10 +10,10 @@ const BRIDGE_GAME_OPTION = {
   UP: 'U',
   DWON: 'D',
   RETRY: 'R',
-  END: 'Q', 
+  END: 'Q',
   MAX_NUMBER: 20,
   MIN_NUMBER: 3,
-}
+};
 
 const BRIDGE_GAME_RESULT = {
   ANSWER: (answer) => `${answer && '\n최종 게임 결과' || '최종 게임 결과'}`,
@@ -22,7 +22,7 @@ const BRIDGE_GAME_RESULT = {
   ANSWER_INDEX: 0,
   ANSWER_KIT_INDEX: 1,
   TOTAL_COUNT_INDEX: 2,
-}
+};
 
 const BRIDGE_FORM = {
   HIT: ' O ',
@@ -31,14 +31,14 @@ const BRIDGE_FORM = {
   UP_POSITION: 0,
   DOWN_POSITION: 1,
   COMPLETE: (status, position) => `[${status[position].join('|')}]`
-}
+};
 
 const ERROR = {
   LENGTH_SCOPE: '[ERROR] 3에서 20까지의 숫자만 입력하셔야 합니다.',
   LENGTH_TPYE: '[ERROR] 숫자만 입력하셔야 합니다.',
   MOVING_TPYE: '[ERROR] U(위) 와 D(아래) 로만 입력하셔야 합니다.',
   RETRY_TPYE: '[ERROR] 재시작(R) 과 종료(Q) 로만 입력하셔야 합니다.',
-}
+};
 
 module.exports = {
   BRIDGE_GAME,

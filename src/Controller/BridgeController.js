@@ -2,7 +2,7 @@ const BridgeGame = require('../GameApi/BridgeGame');
 const OutputView = require('../View/OutputView');
 
 class BridgeController { 
-  #game
+  #game;
 
   constructor () {
     this.#game = new BridgeGame();
@@ -17,7 +17,7 @@ class BridgeController {
   }
 
   gameState() {
-    if(this.gamechlear()) {
+    if (this.gamechlear()) {
       return OutputView.printResult(this.#game.user.userStatus, this.#game.answerOption());
     }
     return this.#game.progress;

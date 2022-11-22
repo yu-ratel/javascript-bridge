@@ -36,10 +36,10 @@ const InputView = {
   },
   readMoving(select) {
     controller.nowMapState(select);
-    if(controller.gameState()) {
+    if (controller.gameState()) {
       return this.movingControl(BRIDGE_GAME.MOVING_SELECT);
     }
-    if(!controller.gamechlear()) {
+    if (!controller.gamechlear()) {
       this.GameCommandControl();
     }
   },
@@ -56,7 +56,7 @@ const InputView = {
     });
   },
   readGameCommand(select) {
-    if(controller.gameRetry(select)) {
+    if (controller.gameRetry(select)) {
        return this.movingControl(BRIDGE_GAME.MOVING_RE_SELECT);
     };
     controller.gameResult();
