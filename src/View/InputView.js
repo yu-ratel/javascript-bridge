@@ -58,7 +58,7 @@ const InputView = {
   },
   readGameCommand(select) {
     if(controller.gameRetry(select)) {
-       return this.readMoving();
+       return this.movingControl();
     };
     controller.gameResult();
   },
