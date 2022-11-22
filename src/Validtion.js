@@ -1,4 +1,5 @@
 const { BRIDGE_GAME_OPTION, ERROR } = require('./Constant/Constant');
+
 class BridgeValidtion {
 
   static validateBridge(bridge) {
@@ -12,9 +13,6 @@ class BridgeValidtion {
   }
   
   static validateSelect(select) {
-    if(select.length !== 1 ) {
-      throw (ERROR.MOVING_SCOPE)
-    }
     if(select !== BRIDGE_GAME_OPTION.UP && select !== BRIDGE_GAME_OPTION.DWON) {
       throw (ERROR.MOVING_TPYE)
     }

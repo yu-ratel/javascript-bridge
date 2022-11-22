@@ -1,7 +1,6 @@
 const BridgeGame = require('../GameApi/BridgeGame');
 const OutputView = require('../View/OutputView');
 
-
 class BridgeController { 
   #game
 

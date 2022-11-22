@@ -36,7 +36,6 @@ const BRIDGE_FORM = {
 const ERROR = {
   LENGTH_SCOPE: '[ERROR] 3에서 20까지의 숫자만 입력하셔야 합니다.',
   LENGTH_TPYE: '[ERROR] 숫자만 입력하셔야 합니다.',
-  MOVING_SCOPE: '[ERROR] 한자리의 U(위) 와 D(아래) 를 입력하셔야 합니다.',
   MOVING_TPYE: '[ERROR] U(위) 와 D(아래) 로만 입력하셔야 합니다.',
   RETRY_TPYE: '[ERROR] 재시작(R) 과 종료(Q) 로만 입력하셔야 합니다.',
 }
