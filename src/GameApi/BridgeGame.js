@@ -1,4 +1,4 @@
-const { Console } = require("@woowacourse/mission-utils");
+const { BRIDGE_GAME_OPTION, BRIDGE_GAME_RESULT } = require('../Constant/Constant');
 const BridgeMaker = require('../BridgeMaker');
 const BridgeRandomNumberGenerator = require('../BridgeRandomNumberGenerator');
 const User = require('../User');
@@ -29,12 +29,12 @@ class BridgeGame {
   }
 
   retry(select) {
-    if(select === 'R') {
+    if(select === BRIDGE_GAME_OPTION.RETRY) {
       this.retryOption();
       this.progress = true;
       return true;
     } 
-    if(select === 'Q') {
+    if(select === BRIDGE_GAME_OPTION.END) {
       return false;
     }
   }
@@ -54,9 +54,13 @@ class BridgeGame {
   
   answerOption() {
     if(this.answer()) {
-      return ['성공', this.#totalCount];
+      return [BRIDGE_GAME_RESULT.ANSWER(true)
+            , BRIDGE_GAME_RESULT.ANSWER_KIT(true)
+            , BRIDGE_GAME_RESULT.TOTAL_COUNT(this.#totalCount)];
     }
-    return ['실패', this.#totalCount];
+    return [BRIDGE_GAME_RESULT.ANSWER()
+           , BRIDGE_GAME_RESULT.ANSWER_KIT()
+           , BRIDGE_GAME_RESULT.TOTAL_COUNT(this.#totalCount)];
   }
 }
 

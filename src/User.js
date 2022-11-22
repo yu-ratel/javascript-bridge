@@ -1,3 +1,4 @@
+const { BRIDGE_GAME_OPTION, BRIDGE_FORM} = require('./Constant/Constant');
 class User {
 
   constructor() {
@@ -15,13 +16,13 @@ class User {
   }
 
   canGo(input) {
-    if(input === 'U') {
-      this.userStatus[bridgeForm.UP].push(bridgeForm.hit);
-      this.userStatus[bridgeForm.DOWN].push(bridgeForm.block);
+    if(input === BRIDGE_GAME_OPTION.UP) {
+      this.userStatus[BRIDGE_FORM.UP_POSITION].push(BRIDGE_FORM.HIT);
+      this.userStatus[BRIDGE_FORM.DOWN_POSITION].push(BRIDGE_FORM.BLOCK);
     }
-      if(input === 'D') {
-      this.userStatus[bridgeForm.UP].push(bridgeForm.block);
-      this.userStatus[bridgeForm.DOWN].push(bridgeForm.hit);
+      if(input === BRIDGE_GAME_OPTION.DWON) {
+      this.userStatus[BRIDGE_FORM.UP_POSITION].push(BRIDGE_FORM.BLOCK);
+      this.userStatus[BRIDGE_FORM.DOWN_POSITION].push(BRIDGE_FORM.HIT);
     }
   }
 
@@ -32,13 +33,13 @@ class User {
   }
 
   canNotGo(input) {
-    if(input === 'U') {
-      this.userStatus[bridgeForm.UP].push(bridgeForm.miss);
-      this.userStatus[bridgeForm.DOWN].push(bridgeForm.block);
+    if(input === BRIDGE_GAME_OPTION.UP) {
+      this.userStatus[BRIDGE_FORM.UP_POSITION].push(BRIDGE_FORM.MISS);
+      this.userStatus[BRIDGE_FORM.DOWN_POSITION].push(BRIDGE_FORM.BLOCK);
     }
-    if(input === 'D') {
-      this.userStatus[bridgeForm.UP].push(bridgeForm.block);
-      this.userStatus[bridgeForm.DOWN].push(bridgeForm.miss);
+    if(input === BRIDGE_GAME_OPTION.DWON) {
+      this.userStatus[BRIDGE_FORM.UP_POSITION].push(BRIDGE_FORM.BLOCK);
+      this.userStatus[BRIDGE_FORM.DOWN_POSITION].push(BRIDGE_FORM.MISS);
     }
   }
 
@@ -58,11 +59,3 @@ class User {
 
 
 module.exports = User;
-
-const bridgeForm = {
-    hit: ' O ',
-    miss: ' X ',
-    block: '   ',
-    UP: 0,
-    DOWN: 1,
-  }

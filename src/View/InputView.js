@@ -1,15 +1,14 @@
 const { Console } = require("@woowacourse/mission-utils");
+const { BRIDGE_GAME } = require('../Constant/Constant');
 const Validtion = require('../Validtion');
 const BridgeController = require('../Controller/BridgeController');
 
 const controller = new BridgeController();
-/**
- * 사용자로부터 입력을 받는 역할을 한다.
- */
+
 const InputView = {
 
   bridgeSizeControl() {
-    Console.readLine('다리의 길이를 입력해주세요.\n', (size) => {
+    Console.readLine(BRIDGE_GAME.LENGTH_INPUT, (size) => {
       try {
         Validtion.validateBridge(size)
       } catch(error) {
@@ -21,16 +20,16 @@ const InputView = {
   },
   readBridgeSize(size) {
     controller.bridgeSize(size);
-    this.movingControl();
+    this.movingControl(BRIDGE_GAME.MOVING_SELECT);
   },
 
-  movingControl() {
-    Console.readLine('\n이동할 칸을 선택해주세요. (위: U, 아래: D)\n', (select) => {
+  movingControl(moving) {
+    Console.readLine(moving, (select) => {
       try {
         Validtion.validateSelect(select);
       } catch(error) {
         Console.print(error);
-        return this.movingControl();
+        return this.movingControl(BRIDGE_GAME.MOVING_SELECT);
       }
       this.readMoving(select);
     });
@@ -38,7 +37,7 @@ const InputView = {
   readMoving(select) {
     controller.nowMapState(select);
     if(controller.gameState()) {
-      return this.movingControl();
+      return this.movingControl(BRIDGE_GAME.MOVING_SELECT);
     }
     if(!controller.gamechlear()) {
       this.GameCommandControl();
@@ -46,19 +45,19 @@ const InputView = {
   },
 
   GameCommandControl() {
-    Console.readLine('\n게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)\n', (select) => {
+    Console.readLine(BRIDGE_GAME.RETRY_SELECT, (select) => {
       try {
         Validtion.validateResult(select);
       } catch(error) {
         Console.print(error);
-        return this.GameCommandControl();
+        return this.GameCommandControl(BRIDGE_GAME.MOVING_RE_SELECT);
       }
       this.readGameCommand(select);
     });
   },
   readGameCommand(select) {
     if(controller.gameRetry(select)) {
-       return this.movingControl();
+       return this.movingControl(BRIDGE_GAME.MOVING_RE_SELECT);
     };
     controller.gameResult();
   },

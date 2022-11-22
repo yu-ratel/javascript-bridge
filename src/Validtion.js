@@ -1,25 +1,28 @@
+const { BRIDGE_GAME_OPTION, ERROR } = require('./Constant/Constant');
 class BridgeValidtion {
 
   static validateBridge(bridge) {
-    if(Number(bridge) < 3 || Number(bridge) > 20) {
-      throw ('[ERROR] 3에서 20까지의 숫자만 입력하셔야 합니다.')
+    if(Number(bridge) < BRIDGE_GAME_OPTION.MIN_NUMBER 
+    || Number(bridge) > BRIDGE_GAME_OPTION.MAX_NUMBER) {
+      throw (ERROR.LENGTH_SCOPE)
     }
     if(Number.isNaN(Number(bridge))) {
-      throw ('[ERROR] 숫자만 입력하셔야 합니다.')
+      throw (ERROR.LENGTH_TPYE)
     }
   }
+  
   static validateSelect(select) {
     if(select.length !== 1 ) {
-      throw ('[ERROR] 한자리의 U와 D를 입력하셔야 합니다.')
+      throw (ERROR.MOVING_SCOPE)
     }
-    if(select !== 'U' && select !== 'D') {
-      throw ('[ERROR] U와 D로만 입력하셔야 합니다.')
+    if(select !== BRIDGE_GAME_OPTION.UP && select !== BRIDGE_GAME_OPTION.DWON) {
+      throw (ERROR.MOVING_TPYE)
     }
   }
 
   static validateResult(select) {
-    if(select !== 'R' && select !== 'Q') {
-      throw ('[ERROR] 재시작(R) 과 종료(Q) 로만 입력하셔야 합니다.')
+    if(select !== BRIDGE_GAME_OPTION.RETRY && select !== BRIDGE_GAME_OPTION.END) {
+      throw (ERROR.RETRY_TPYE)
     }
   }
 }
