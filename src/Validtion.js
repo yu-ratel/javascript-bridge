@@ -1,8 +1,8 @@
 const { BRIDGE_GAME_OPTION, ERROR } = require('./Constant/Constant');
 
-class BridgeValidtion {
+const BridgeValidtion = {
 
-  static validateBridge(bridge) {
+  validateBridge(bridge) {
     if(Number(bridge) < BRIDGE_GAME_OPTION.MIN_NUMBER 
     || Number(bridge) > BRIDGE_GAME_OPTION.MAX_NUMBER) {
       throw (ERROR.LENGTH_SCOPE)
@@ -10,19 +10,19 @@ class BridgeValidtion {
     if(Number.isNaN(Number(bridge))) {
       throw (ERROR.LENGTH_TPYE)
     }
-  }
+  },
   
-  static validateSelect(select) {
+  validateSelect(select) {
     if(select !== BRIDGE_GAME_OPTION.UP && select !== BRIDGE_GAME_OPTION.DWON) {
       throw (ERROR.MOVING_TPYE)
     }
-  }
+  },
 
-  static validateResult(select) {
+  validateResult(select) {
     if(select !== BRIDGE_GAME_OPTION.RETRY && select !== BRIDGE_GAME_OPTION.END) {
       throw (ERROR.RETRY_TPYE)
     }
-  }
+  },
 }
 
 module.exports = BridgeValidtion;
