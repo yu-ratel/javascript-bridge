@@ -7,45 +7,62 @@ const api = new BridgeApi();
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 const InputView = {
-  /**
-   * 다리의 길이를 입력받는다.
-   */
-  readBridgeSize() {
+
+  bridgeSizeControl() {
     Console.readLine('다리의 길이를 입력해주세요.\n', (size) => {
+      try {
+        Validtion.validateBridge(size)
+      } catch(error) {
+        Console.print(error);
+        return this.bridgeSizeControl();
+      }
+      this.readBridgeSize(size);
+    });
+  },
+  readBridgeSize(size) {
       api.bridgeSize(size);
-      this.readMoving();
-    })
+      this.movingControl();
   },
 
-  /**
-   * 사용자가 이동할 칸을 입력받는다.
-   */
-  readMoving() {
+  movingControl() {
     Console.readLine('\n이동할 칸을 선택해주세요. (위: U, 아래: D)\n', (select) => {
+      try {
+        Validtion.validateSelect(select);
+      } catch(error) {
+        Console.print(error);
+        return this.movingControl();
+      }
+      this.readMoving(select);
+    });
+  },
+  readMoving(select) {
       api.nowMapState(select);
       if(api.gameState()) {
-        return this.readMoving();
+        return this.movingControl();
       }
       if(!api.gamechlear()) {
-      this.readGameCommand();
+      this.GameCommandControl();
       }
-    })
   },
 
-  /**
-   * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-   */
-  readGameCommand() {
+  GameCommandControl() {
     Console.readLine('\n게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)\n', (select) => {
-      if(api.gameRetry(select)) {
-        return this.readMoving();
-      };
-
-      api.gameResult();
+      try {
+        Validtion.validateResult(select);
+      } catch(error) {
+        Console.print(error);
+        return this.GameCommandControl();
+      }
+      this.readGameCommand(select);
     });
+  },
+  readGameCommand(select) {
+    if(api.gameRetry(select)) {
+       return this.readMoving();
+    };
+    api.gameResult();
   },
 
 }
 
 module.exports = InputView;
-InputView.readBridgeSize()
