@@ -1,26 +1,57 @@
 const { Console } = require('@woowacourse/mission-utils');
-/**
- * 사용자로부터 입력을 받는 역할을 한다.
- */
+const tryCatchKit = require('../tryCatchKit');
+const Validata = require('../Validata');
+const Controller = require('../Controller/Controller');
+
 const InputView = {
-  /**
-   * 다리의 길이를 입력받는다.
-   */
+  controller: new Controller(),
+
   readBridgeSize() {
-    Console.readLine('다리의 길이를 입력해주세요.\n' , callback);
+    Console.readLine('다리의 길이를 입력해주세요.\n' , (input) => {
+      tryCatchKit(
+        () => Validata.isBridgeSize(input),
+        () => this.readBridgeSize()
+      )
+
+      this.controller.getSize(input);
+      this.readMoving()
+    });
   },
 
-  /**
-   * 사용자가 이동할 칸을 입력받는다.
-   */
   readMoving() {
-    Console.readLine('이동할 칸을 선택해주세요. (위: U, 아래:D)\n' , callback);
+    Console.readLine('이동할 칸을 선택해주세요. (위: U, 아래:D)\n' , (input) => {
+      tryCatchKit(
+        () => this.movingControl(input), 
+        () => this.readMoving()
+      );
+    });
   },
 
-  /**
-   * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-   */
-  readGameCommand() {},
+  movingControl(input) {
+    Validata.isMoving(input); 
+
+    this.controller.getMap(input);
+    if(this.controller.isGame()) return this.readMoving();
+    return this.readGameCommand();
+  },
+
+
+  readGameCommand() {
+    Console.readLine('게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료:Q)\n', (input) => {
+      tryCatchKit(
+        () => this.GameCommandControl(input),
+        () => this.readGameCommand()
+      )
+    });
+  },
+
+  GameCommandControl(input) {
+    Validata.isGameCommand(input); 
+
+    if(this.controller.gameStart(input)) return this.readMoving();
+  }
 };
 
 module.exports = InputView;
+
+InputView.readBridgeSize()
