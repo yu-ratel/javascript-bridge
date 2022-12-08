@@ -31,8 +31,11 @@ const InputView = {
     Validata.isMoving(input); 
 
     this.controller.getMap(input);
-    if(this.controller.isGame()) return this.readMoving();
-    return this.readGameCommand();
+    if(!this.controller.isGame()) {
+      return this.readGameCommand();
+    }
+    
+    this.readMoving()
   },
 
 
@@ -48,7 +51,7 @@ const InputView = {
   GameCommandControl(input) {
     Validata.isGameCommand(input); 
 
-    if(this.controller.gameStart(input)) return this.readMoving();
+    if(this.controller.getRetry(input)) return this.readMoving();
   }
 };
 

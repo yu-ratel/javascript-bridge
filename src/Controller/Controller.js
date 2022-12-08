@@ -22,17 +22,18 @@ class Controller {
 
   isGame() {
     if(this.#game.isAnswer()) {
-      return OutputView.printResult()
+      return OutputView.printResult(this.#game.answerOption());
     }
-    if(this.#game.progress) {
-      return true;
-    }
+
+    return this.#game.progress;
   }
 
   getRetry(input) {
     if(this.#game.retry(input)) {
       return true;
     }
+
+    return OutputView.printResult(this.gameStart.answerOption());
   }
 
 }

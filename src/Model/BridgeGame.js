@@ -31,6 +31,12 @@ class BridgeGame {
       return true;
     }
   }
+  
+  answerOption() {
+    const result = this.isAnswer() ? '성공' : '실패';
+
+    return [this.map.setMap(), this.#totalCount, result];
+  }
 
   retry(input) {
     if(input === 'R') {
